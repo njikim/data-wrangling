@@ -3,6 +3,7 @@ from baseapp import views
  
 urlpatterns = [
     path('', views.home),
-    path('genre', views.genre)
-    #path('', views.index)
+    path('genre', views.genre),
+    path('genre/result', views.genre_result),
+
 ]

@@ -27,3 +27,21 @@ settings.py
 {% bootstrap_javascript %}
 {% block bootstrap3_content %}
 {% endblock %}
+
+3. path('', views.home)
+home.html, views.home,
+
+4. path('genre', views.genre)
+views.genre, genre.html,
+
+5. path('genre/result', views.genre_result)
+views.genre_result: selected 값을 genre_result.html에 같이 보냄!!!
+genre_result.html: {{selected}}를 기반으로 차트 보여주기
+
+
+DB 연동
+1. create superuser
+2. baseapp -> models.py: Movie 테이블 생성
+3. makemigrations & migrate
+4. baseapp -> admin.py: Movie class 등록
+5. admin page에서 영화 3개 등록하기

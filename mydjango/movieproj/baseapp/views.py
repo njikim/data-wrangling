@@ -7,3 +7,7 @@ def home(request):
 
 def genre(request):
     return render(request, 'genre.html')
+
+def genre_result(request):
+    selected = request.GET.get("selected")
+    return render(request, 'genre_result.html', {"selected":selected})
