@@ -1,0 +1,29 @@
+0. 가상환경에 장고 설치
+C:\Python\movie-data-analysis\mydjango>myvenv\Scripts\acivate
+
+(myvenv) C:\Python\movie-data-analysis\mydjango>python -m pip install --upgrade pip
+(myvenv) C:\Python\movie-data-analysis\mydjango>pip install django
+
+1. 프젝 & 앱 생성
+(myvenv) C:\Python\movie-data-analysis\mydjango>django-admin startproject movieproj
+(myvenv) C:\Python\movie-data-analysis\mydjango>cd movieproj
+(myvenv) C:\Python\movie-data-analysis\mydjango\movieproj>python manage.py makemigrations
+(myvenv) C:\Python\movie-data-analysis\mydjango\movieproj>python manage.py migrate
+(myvenv) C:\Python\movie-data-analysis\mydjango\movieproj>python manage.py runserver
+
+(myvenv) C:\Python\movie-data-analysis\mydjango\movieproj>python manage.py startapp baseapp
+movieproj -> settings.py 
+    INSTALLED_APPS에 baseapp 추가
+
+2. bootstrap
+(myvenv) C:\Python\movie-data-analysis\mydjango>pip install django-bootstrap4
+settings.py
+    INSTALLED_APPS에 bootstrap3 추가
+
+** html body 안**
+<body>
+{% load bootstrap3 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+{% block bootstrap3_content %}
+{% endblock %}
