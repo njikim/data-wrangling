@@ -20,7 +20,7 @@ movieproj -> settings.py
 settings.py
     INSTALLED_APPS에 bootstrap3 추가
 
-** html body 안**
+**부트스트랩 html body 안**
 <body>
 {% load bootstrap3 %}
 {% bootstrap_css %}
@@ -38,10 +38,21 @@ views.genre, genre.html,
 views.genre_result: selected 값을 genre_result.html에 같이 보냄!!!
 genre_result.html: {{selected}}를 기반으로 차트 보여주기
 
+6. DB 연동
+    1. createsuperuser
+    2. baseapp -> models.py: Movie 테이블 생성
+    3. makemigrations & migrate
+    4. baseapp -> admin.py: Movie class 등록
+    5. csv file -> sql query로 변환한 뒤, sqlitestudio를 통해 집어넣음
+    6. admin page에서 영화가 잘 들어갔는지 체크하기
 
-DB 연동
-1. create superuser
-2. baseapp -> models.py: Movie 테이블 생성
-3. makemigrations & migrate
-4. baseapp -> admin.py: Movie class 등록
-5. admin page에서 영화 3개 등록하기
+*** django no such table error: python manage.py migrate --run-syncdb
+*** 테이블 지우고 다시해서 에러뜨면, __pycache__ & db.sqlite3 다 지우고 다시 makemigrations
+Delete your database (db.sqlite3 in my case) in your project directory
+Remove everything from __pycache__ folder under your project subdirectory
+For the application you are trying to fix, go to the folder and clear migrations and __pycache__ directories
+
+7. views.py
+from baseapp.models import Movie
+def genre_result(request):
+

@@ -5,8 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+
+    <!--<script src="googlechart.js"></script>-->
+
+    
 </head>
 <body>
-    {{selected}}
+    {{selected}} <br><br>
+    {{movie_sorted}} <br><br>
+    
+
+    {% for i in movie_list %}
+        <b>{{i.title}}</b> {{i.year}} {{i.rank}} {{i.genre}} <br>
+    {% endfor %}
+
+    <div id="chart_div"></div>
 </body>
 </html>
