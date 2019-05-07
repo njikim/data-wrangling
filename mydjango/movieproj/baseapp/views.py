@@ -11,10 +11,11 @@ def genre(request):
 
 def genre_result(request):
     selected = request.GET.get("selected")
-    #movie_list = Movie.objects.all()
     movie_list = Movie.objects.filter(genre__contains=selected)
     movie_sorted = sortbysales(movie_list)
-    #print(type(movie_list_sorted))
+    #print(type(movie_sorted))
+    print(movie_sorted)
+    
     dbcontent = {
         "selected":selected,
         "movie_list": movie_list,

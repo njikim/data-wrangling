@@ -56,3 +56,9 @@ For the application you are trying to fix, go to the folder and clear migrations
 from baseapp.models import Movie
 def genre_result(request):
 
+8. static file
+settings.py
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'statics'),
+]
+

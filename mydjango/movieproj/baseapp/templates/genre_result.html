@@ -2,15 +2,72 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Result page</title>
 
-    <!--<script src="googlechart.js"></script>-->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+    google.charts.load('current', {'packages':['bar']});
+    google.charts.setOnLoadCallback(drawStuff);
+    var va = ["{{movie_sorted}}".replace(/&#39;/g, '"')];
+    console.log(va)
+    console.log(typeof(va))
+    data1 = JSON.parse(va)['title'];
+    data2 = JSON.parse(va)['sales'];
+    console.log(data1);
+    console.log(data2);
+    cnt = 0;
+    for (i in data1){
+        cnt++;
+    }
+    function Create2DArray(rows) {
+        var arr = [];
+
+        for (var i=0;i<rows;i++) {
+            arr[i] = [0,0];
+        }
+
+        return arr;
+    }
+    lst = Create2DArray(cnt);
+    
+    for (i in data1){
+            lst[i][0]= data1[i]; //title
+            lst[i][1]=data2[i]; //sales
+    }
+    
+    console.log(lst);
+    function drawStuff() {
+    // Define the chart to be drawn.
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'title');
+    data.addColumn('number', 'sales');
+    data.addRows(lst);
+
+    var options = {
+        width: 800,
+        legend: { position: 'none' },
+        chart: {
+        title: 'top 5 based on 매출액',
+        subtitle: '장르별' },
+        axes: {
+        x: {
+            0: { side: 'top', label: 'movie titles'} // Top x-axis.
+        }
+        },
+        bar: { groupWidth: "90%" }
+    };
+
+    var chart = new google.charts.Bar(document.getElementById('top_x_div'));
+    // Convert the Classic options to Material options.
+    chart.draw(data, google.charts.Bar.convertOptions(options));
+    };
+    </script>   
+</head>
 
     
 </head>
 <body>
+        <div id="top_x_div" style="width: 800px; height: 600px;"></div>
     {{selected}} <br><br>
     {{movie_sorted}} <br><br>
     
@@ -19,6 +76,6 @@
         <b>{{i.title}}</b> {{i.year}} {{i.rank}} {{i.genre}} <br>
     {% endfor %}
 
-    <div id="chart_div"></div>
 </body>
 </html>
+
